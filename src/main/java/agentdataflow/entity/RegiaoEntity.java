@@ -2,7 +2,6 @@ package agentdataflow.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.util.List;
 
 @Data
@@ -10,16 +9,21 @@ import java.util.List;
 public class RegiaoEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String sigla;
 
-    @ElementCollection // para armazenar múltiplos valores de geracao, compra, e precoMedio em uma coleção
-    private List<Double> geracao;
+    @ManyToOne
+    @JoinColumn(name = "agente_id")
+    private AgenteEntity agente;
 
-    @ElementCollection
-    private List<Double> compra;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "regiao")
+    private List<MedicaoEntity> geracao;
 
-    @ElementCollection
-    private List<Double> precoMedio;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "regiao")
+    private List<MedicaoEntity> compra;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "regiao")
+    private List<MedicaoEntity> precoMedio;
 }

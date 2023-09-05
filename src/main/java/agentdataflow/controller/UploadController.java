@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class AgenteController {
+public class UploadController{
     @Autowired
     private AgenteService agenteService;
 
@@ -20,8 +20,7 @@ public class AgenteController {
         return agenteService.getAllAgentes();
     }
 
-    @PostMapping("/api/upload")
-    @CrossOrigin("*")
+    @PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
             agenteService.processFile(file);
@@ -30,7 +29,6 @@ public class AgenteController {
             return ResponseEntity.badRequest().body("Falha ao processar arquivo: " + e.getMessage());
         }
     }
-
 
     @GetMapping("/consolidated")
     public ResponseEntity<Object> getConsolidatedDataByRegion() {
