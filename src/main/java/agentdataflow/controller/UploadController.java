@@ -15,11 +15,6 @@ public class UploadController{
     @Autowired
     private AgenteService agenteService;
 
-    @GetMapping
-    public List<AgenteEntity> getAllAgentes() {
-        return agenteService.getAllAgentes();
-    }
-
     @PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
