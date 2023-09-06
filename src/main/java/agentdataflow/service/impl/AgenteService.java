@@ -8,7 +8,6 @@ public interface AgenteService {
 
     List<AgenteEntity> getAllAgentes();
     void processFile(MultipartFile file);
-
     Object getConsolidatedData();
 
 

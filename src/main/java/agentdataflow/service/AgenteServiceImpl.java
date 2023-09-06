@@ -80,7 +80,6 @@ public class AgenteServiceImpl implements AgenteService {
                 agenteRepository.save(agente);
             }
         } catch (Exception e) {
-            // Tratar a exceção de forma adequada, como lançar uma exceção personalizada ou registrar o erro
             e.printStackTrace();
         }
     }
